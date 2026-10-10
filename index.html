@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="is">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- EDIT: the title shown in the browser tab and in Google results -->
-  <title>Your Name — Architect and BIM specialist</title>
-  <meta name="description" content="Portfolio of Your Name, architect and BIM specialist. Private residential projects, design and BIM services.">
+  <title>Sigurþór Ingi Sigurþórsson — Byggingafræðingur</title>
+  <meta name="description" content="Verkasafn Sigurþórs Inga Sigurþórssonar byggingafræðings. Íbúðarhús fyrir einkaaðila, hönnun og BIM-þjónusta.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -85,6 +85,7 @@
     .contact-email { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.015em; }
     .contact-details { margin-top: 24px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 32px; }
 
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; }
     footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 0.9rem; }
 
     /* Phones and small screens */
@@ -107,13 +108,13 @@
   <header>
     <div class="wrap">
       <!-- EDIT: your name -->
-      <a class="name" href="#">Your Name</a>
-      <nav aria-label="Main">
+      <a class="name" href="#">Sigurþór Ingi Sigurþórsson</a>
+      <nav aria-label="Aðalvalmynd">
         <ul>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#projects">Verk</a></li>
+          <li><a href="#services">Þjónusta</a></li>
+          <li><a href="#about">Um mig</a></li>
+          <li><a href="#contact">Hafa samband</a></li>
         </ul>
       </nav>
     </div>
@@ -126,46 +127,46 @@
       <div class="intro">
         <div>
           <!-- EDIT: one sentence about who you are -->
-          <h1>Architect and BIM specialist.</h1>
-          <p>I design private homes and small buildings, and help practices set up and run their BIM workflows. Based in [your city].</p>
+          <h1>Byggingafræðingur.</h1>
+          <p>Ég hanna íbúðarhús og minni byggingar fyrir einkaaðila og aðstoða stofur við að koma upp og reka BIM-verklag.</p>
         </div>
-        <!-- PHOTO: replace this box with your portrait, e.g. <img src="images/portrait.jpg" alt="Your Name"> -->
-        <div class="portrait" role="img" aria-label="Portrait placeholder"></div>
+        <!-- PHOTO: your portrait. To change it, replace images/portrait.jpg -->
+        <div class="portrait"><img src="images/portrait.jpg" alt="Sigurþór Ingi Sigurþórsson" width="1000" height="1481" style="object-position:50% 30%"></div>
       </div>
 
       <!-- PROJECTS: each <article> block is one project. Copy a block to add another. -->
       <section id="projects">
         <div class="section-head">
-          <h2>Projects</h2>
-          <p>A selection of private projects, from concept to construction drawings.</p>
+          <h2>Verk</h2>
+          <p>Úrval verkefna fyrir einkaaðila, frá fyrstu hugmynd að verkteikningum.</p>
         </div>
         <div class="projects">
 
           <article class="project">
-            <div class="photo" role="img" aria-label="Project photo placeholder"></div>
+            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
             <div class="project-meta">
-              <h3>Project name</h3>
+              <h3>Heiti verkefnis</h3>
               <span class="year">2025</span>
             </div>
-            <p>Single-family house, 180 m². Concept, design and permit drawings. Location.</p>
+            <p>Einbýlishús, 180 m². Frumhönnun, hönnun og aðaluppdrættir. Staðsetning.</p>
           </article>
 
           <article class="project">
-            <div class="photo" role="img" aria-label="Project photo placeholder"></div>
+            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
             <div class="project-meta">
-              <h3>Project name</h3>
+              <h3>Heiti verkefnis</h3>
               <span class="year">2024</span>
             </div>
-            <p>Summer house extension. Design and construction drawings. Location.</p>
+            <p>Viðbygging við sumarhús. Hönnun og verkteikningar. Staðsetning.</p>
           </article>
 
           <article class="project">
-            <div class="photo" role="img" aria-label="Project photo placeholder"></div>
+            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
             <div class="project-meta">
-              <h3>Project name</h3>
+              <h3>Heiti verkefnis</h3>
               <span class="year">2023</span>
             </div>
-            <p>Apartment renovation. Layout, interior and BIM model. Location.</p>
+            <p>Endurnýjun íbúðar. Skipulag, innanhússhönnun og BIM-líkan. Staðsetning.</p>
           </article>
 
         </div>
@@ -174,21 +175,21 @@
       <!-- SERVICES: each <li> block is one service -->
       <section id="services">
         <div class="section-head">
-          <h2>Services</h2>
-          <p>Available for private clients and for practices that need BIM support.</p>
+          <h2>Þjónusta</h2>
+          <p>Fyrir einkaaðila og stofur sem þurfa aðstoð við BIM.</p>
         </div>
         <ul class="services">
           <li>
-            <h3>Architectural design</h3>
-            <p>Homes, extensions and renovations, from first sketches through permit and construction drawings.</p>
+            <h3>Hönnun og teikningar</h3>
+            <p>Íbúðarhús, viðbyggingar og endurbætur, frá fyrstu skissum að aðaluppdráttum og verkteikningum.</p>
           </li>
           <li>
-            <h3>BIM modelling</h3>
-            <p>Accurate models and drawing sets for design teams, contractors and owners.</p>
+            <h3>BIM-líkanagerð</h3>
+            <p>Nákvæm líkön og teikningasett fyrir hönnunarteymi, verktaka og eigendur.</p>
           </li>
           <li>
-            <h3>BIM coordination and consulting</h3>
-            <p>Templates, standards, clash detection and workflow setup so your team works from one reliable model.</p>
+            <h3>BIM-samræming og ráðgjöf</h3>
+            <p>Sniðmát, staðlar, árekstrargreining og uppsetning verklags, svo teymið vinni út frá einu áreiðanlegu líkani.</p>
           </li>
         </ul>
       </section>
@@ -196,13 +197,13 @@
       <!-- ABOUT -->
       <section id="about">
         <div class="about">
-          <div class="section-head" style="margin:0;display:block"><h2>About</h2></div>
+          <div class="section-head" style="margin:0;display:block"><h2>Um mig</h2></div>
           <div class="about-text">
             <!-- EDIT: your bio, a few short paragraphs -->
-            <p>A short paragraph about your background: where you studied, where you have worked, and the kind of projects you enjoy most.</p>
-            <p>A second paragraph about how you work with clients, or what sets your approach apart.</p>
+            <p>Stutt málsgrein um bakgrunn þinn: hvar þú lærðir, hvar þú hefur starfað og hvers konar verkefni þér þykja skemmtilegust.</p>
+            <p>Önnur málsgrein um hvernig þú vinnur með viðskiptavinum, eða hvað einkennir nálgun þína.</p>
             <!-- CV: put your resume in the same folder as cv.pdf and this link will download it -->
-            <a class="cv-link" href="cv.pdf" download>Download CV (PDF)</a>
+            <a class="cv-link" href="cv.pdf" download>Sækja ferilskrá (PDF)</a>
           </div>
         </div>
       </section>
@@ -210,14 +211,14 @@
       <!-- CONTACT -->
       <section id="contact">
         <div class="section-head">
-          <h2>Contact</h2>
-          <p>For new projects or BIM work, send me an email.</p>
+          <h2>Hafa samband</h2>
+          <p>Sendu mér tölvupóst vegna nýrra verkefna eða BIM-vinnu.</p>
         </div>
         <!-- EDIT: your email in both places -->
         <a class="contact-email" href="mailto:you@example.com">you@example.com</a>
         <div class="contact-details">
-          <span>Phone number</span>
-          <a href="https://www.linkedin.com/">LinkedIn</a>
+          <span>Símanúmer</span>
+          <a href="https://www.linkedin.com/in/sigur%C3%BE%C3%B3r-ingi-sigur%C3%BE%C3%B3rsson-73328a192/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </section>
 
@@ -225,7 +226,7 @@
   </main>
 
   <footer>
-    <div class="wrap">© 2026 Your Name</div>
+    <div class="wrap footer-row"><span>© 2026 Sigurþór Ingi Sigurþórsson</span><a href="https://www.linkedin.com/in/sigur%C3%BE%C3%B3r-ingi-sigur%C3%BE%C3%B3rsson-73328a192/" target="_blank" rel="noopener">LinkedIn</a></div>
   </footer>
 
 </body>
