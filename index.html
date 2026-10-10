@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- EDIT: the title shown in the browser tab and in Google results -->
   <title>Sigurþór Ingi Sigurþórsson — Byggingafræðingur</title>
-  <meta name="description" content="Verkasafn Sigurþórs Inga Sigurþórssonar byggingafræðings. Íbúðarhús fyrir einkaaðila, hönnun og BIM-þjónusta.">
+  <meta name="description" content="Sigurþór Ingi Sigurþórsson byggingafræðingur, sérfræðingur hjá Isavia. Byggingarhönnun, verkteikningar og BIM-stjórnun.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -81,6 +81,21 @@
     .cv-link { display: inline-block; margin-top: 32px; padding: 12px 22px; border: 1px solid var(--ink); text-decoration: none; font-weight: 500; }
     .cv-link:hover { background: var(--ink); color: var(--paper); }
 
+    /* Experience (selected work projects) */
+    .work { list-style: none; }
+    .work li { display: grid; grid-template-columns: 1fr 3fr; gap: 56px; padding: 26px 0; border-top: 1px solid var(--line); }
+    .work li:last-child { border-bottom: 1px solid var(--line); }
+    .work .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .work h3 { font-size: 1.15rem; font-weight: 500; }
+    .work .client { color: var(--muted); font-size: 0.95rem; }
+    .work p.desc { margin-top: 8px; max-width: 62ch; }
+
+    /* Facts under About (work history, education) */
+    .facts { margin-top: 48px; display: grid; gap: 32px; }
+    .facts h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .facts dl { display: grid; grid-template-columns: 7.5em 1fr; gap: 6px 16px; }
+    .facts dt { color: var(--muted); font-variant-numeric: tabular-nums; }
+
     /* Contact */
     .contact-email { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.015em; }
     .contact-details { margin-top: 24px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 32px; }
@@ -94,7 +109,8 @@
       header .wrap { flex-direction: column; gap: 10px; }
       nav ul { gap: 20px; flex-wrap: wrap; }
       .intro { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 72px; }
-      .section-head, .services li, .about { grid-template-columns: 1fr; gap: 12px; }
+      .section-head, .services li, .work li, .about { grid-template-columns: 1fr; gap: 12px; }
+      .work li { gap: 4px; }
       .projects { grid-template-columns: 1fr; gap: 48px; }
       .project:first-child .photo { aspect-ratio: 3 / 2; }
       section { padding: 56px 0 72px; }
@@ -111,8 +127,9 @@
       <a class="name" href="#">Sigurþór Ingi Sigurþórsson</a>
       <nav aria-label="Aðalvalmynd">
         <ul>
-          <li><a href="#projects">Verk</a></li>
           <li><a href="#services">Þjónusta</a></li>
+          <li><a href="#projects">Verk</a></li>
+          <li><a href="#experience">Reynsla</a></li>
           <li><a href="#about">Um mig</a></li>
           <li><a href="#contact">Hafa samband</a></li>
         </ul>
@@ -128,17 +145,39 @@
         <div>
           <!-- EDIT: one sentence about who you are -->
           <h1>Byggingafræðingur.</h1>
-          <p>Ég hanna íbúðarhús og minni byggingar fyrir einkaaðila og aðstoða stofur við að koma upp og reka BIM-verklag.</p>
+          <p>Ég starfa sem sérfræðingur á verkfræðideild hjá Isavia og tek einnig að mér verkefni fyrir einkaaðila: aðaluppdrætti, verkteikningar og BIM-ráðgjöf.</p>
         </div>
         <!-- PHOTO: your portrait. To change it, replace images/portrait.jpg -->
         <div class="portrait"><img src="images/portrait.jpg" alt="Sigurþór Ingi Sigurþórsson" width="1000" height="1481" style="object-position:50% 30%"></div>
       </div>
 
-      <!-- PROJECTS: each <article> block is one project. Copy a block to add another. -->
+      <!-- SERVICES: each <li> block is one service -->
+      <section id="services">
+        <div class="section-head">
+          <h2>Þjónusta</h2>
+          <p>Fyrir einkaaðila, fyrirtæki og hönnunarteymi.</p>
+        </div>
+        <ul class="services">
+          <li>
+            <h3>Byggingarhönnun</h3>
+            <p>Aðaluppdrættir, byggingarlýsingar og skráningartöflur fyrir nýbyggingar, viðbyggingar og breytingar.</p>
+          </li>
+          <li>
+            <h3>Verkteikningar og deili</h3>
+            <p>Verk- og smíðateikningar, deilihönnun, verklýsingar og magnskrár.</p>
+          </li>
+          <li>
+            <h3>BIM-stjórnun og samræming</h3>
+            <p>Uppsetning líkana, samræming milli fagsviða, árekstrargreining og umsjón með ACC-vefjum og BIM-kröfum verkkaupa.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PROJECTS: your own private projects with photos. Each <article> block is one project. Copy a block to add another. -->
       <section id="projects">
         <div class="section-head">
           <h2>Verk</h2>
-          <p>Úrval verkefna fyrir einkaaðila, frá fyrstu hugmynd að verkteikningum.</p>
+          <p>Verkefni sem ég hef unnið fyrir einkaaðila.</p>
         </div>
         <div class="projects">
 
@@ -172,24 +211,76 @@
         </div>
       </section>
 
-      <!-- SERVICES: each <li> block is one service -->
-      <section id="services">
+      <!-- EXPERIENCE: selected projects from work (from the CV). Each <li> is one project. -->
+      <section id="experience">
         <div class="section-head">
-          <h2>Þjónusta</h2>
-          <p>Fyrir einkaaðila og stofur sem þurfa aðstoð við BIM.</p>
+          <h2>Reynsla</h2>
+          <p>Valin verkefni sem ég hef unnið hjá COWI og Mannviti.</p>
         </div>
-        <ul class="services">
+        <ul class="work">
           <li>
-            <h3>Hönnun og teikningar</h3>
-            <p>Íbúðarhús, viðbyggingar og endurbætur, frá fyrstu skissum að aðaluppdráttum og verkteikningum.</p>
+            <span class="when">2024–2026</span>
+            <div>
+              <h3>First Water, landeldi</h3>
+              <span class="client">First Water ehf.</span>
+              <p class="desc">Eitt stærsta framkvæmdaverkefni á Íslandi síðustu ár, um 45.000 m² í fyrsta áfanga. Ég stýrði teymi í byggingarhönnun, aðaluppdráttum, útboðs- og verkteikningum, og sá ásamt öðrum um BIM og samræmingu yfir 150 líkana í ACC.</p>
+            </div>
           </li>
           <li>
-            <h3>BIM-líkanagerð</h3>
-            <p>Nákvæm líkön og teikningasett fyrir hönnunarteymi, verktaka og eigendur.</p>
+            <span class="when">2024–2025</span>
+            <div>
+              <h3>Reykjahlíð, djúpdælur</h3>
+              <span class="client">Veitur</span>
+              <p class="desc">Umsjón með byggingarhönnun, aðaluppdráttum, verkteikningum og útboðsgögnum fyrir sex rafbúnaðarhús í tveimur áföngum. BIM-fulltrúi verkefnisins: samræming líkana, árekstrargreining og umsjón með ACC.</p>
+            </div>
           </li>
           <li>
-            <h3>BIM-samræming og ráðgjöf</h3>
-            <p>Sniðmát, staðlar, árekstrargreining og uppsetning verklags, svo teymið vinni út frá einu áreiðanlegu líkani.</p>
+            <span class="when">2025</span>
+            <div>
+              <h3>Seleyri, rafbúnaðar- og dæluhús</h3>
+              <span class="client">Veitur</span>
+              <p class="desc">Umsjón með byggingarhönnun, aðaluppdráttum, verkteikningum, verklýsingum og magnskrám fyrir tvö hús. BIM-fulltrúi sem sá um uppsetningu líkana allra fagsviða og BIM-kröfur verkkaupa.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2024</span>
+            <div>
+              <h3>Sóltún 2, viðbygging</h3>
+              <span class="client">Sóltún fasteign ehf.</span>
+              <p class="desc">Hönnun og teikningar fyrir um 3.500 m² stækkun hjúkrunarheimilis, ásamt breytingum á núverandi húsnæði.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2023</span>
+            <div>
+              <h3>Tengivirki</h3>
+              <span class="client">Landsnet</span>
+              <p class="desc">Hönnun frágangsdeila fyrir utan- og innanhússfrágang fimm tengivirkja, meðal annars í Rimakoti, Þorlákshöfn, á Hellu, Klafastöðum og í Sigöldu.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2023</span>
+            <div>
+              <h3>Sumarhús í Kiðjabergi</h3>
+              <span class="client">Einkaaðili</span>
+              <p class="desc">Deilihönnun á byggingarfrágangi rúmlega 413 m² sumarhúss og líkanagerð fyrir myndvinnslu verkkaupa.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2022–2024</span>
+            <div>
+              <h3>Colas, þjónustu- og starfsmannahús</h3>
+              <span class="client">Colas Ísland ehf.</span>
+              <p class="desc">Hönnun og teikningar lagna og loftræstingar fyrir 1.229 m² hús, auk frágangsdeila. Einnig verkteikningar, deili og verklýsingar fyrir nýtt áfyllingarhús við Óseyrarbraut.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2023–2024</span>
+            <div>
+              <h3>Sky Lagoon, stækkun</h3>
+              <span class="client">Nature Resort ehf.</span>
+              <p class="desc">Lagnahönnun í rúmlega 960 m² viðbyggingu.</p>
+            </div>
           </li>
         </ul>
       </section>
@@ -199,11 +290,35 @@
         <div class="about">
           <div class="section-head" style="margin:0;display:block"><h2>Um mig</h2></div>
           <div class="about-text">
-            <!-- EDIT: your bio, a few short paragraphs -->
-            <p>Stutt málsgrein um bakgrunn þinn: hvar þú lærðir, hvar þú hefur starfað og hvers konar verkefni þér þykja skemmtilegust.</p>
-            <p>Önnur málsgrein um hvernig þú vinnur með viðskiptavinum, eða hvað einkennir nálgun þína.</p>
-            <!-- CV: put your resume in the same folder as cv.pdf and this link will download it -->
-            <a class="cv-link" href="cv.pdf" download>Sækja ferilskrá (PDF)</a>
+            <p>Ég lauk B.Sc. í byggingafræði frá Háskólanum í Reykjavík og útskrifaðist í febrúar 2024. Við útskrift hlaut ég viðurkenningu frá HR og Byggingafræðingafélagi Íslands fyrir hæstu meðaleinkunn útskriftarnema í byggingafræði.</p>
+            <p>Ég hef starfað við hönnun og eftirlit frá árinu 2021, fyrst hjá Verkfræðistofu Reykjavíkur og síðan hjá Mannviti, sem nú er hluti af COWI. Þar vann ég fyrst við lagna- og loftræstihönnun og síðan á sviði arkitektúrs og byggingareðlisfræði við byggingarhönnun og BIM. Í janúar 2026 hóf ég störf sem sérfræðingur á verkfræðideild hjá Isavia.</p>
+            <p>Hjá COWI innleiddi ég einnig BIM7AA-kóðunarkerfi fyrir byggingarhluta í arkitektalíkönum og vann að þróun verklags í Revit og BIM.</p>
+            <!-- CV: when you have a web version of your CV, save it as cv.pdf in this folder and remove the two comment markers around the link below -->
+            <!-- <a class="cv-link" href="cv.pdf" download>Sækja ferilskrá (PDF)</a> -->
+            <div class="facts">
+              <div>
+                <h3>Starfsferill</h3>
+                <dl>
+                  <dt>2026–</dt><dd>Isavia, sérfræðingur á verkfræðideild</dd>
+                  <dt>2024–2026</dt><dd>COWI</dd>
+                  <dt>2022–2024</dt><dd>Mannvit hf.</dd>
+                  <dt>2021–2022</dt><dd>Verkfræðistofa Reykjavíkur</dd>
+                </dl>
+              </div>
+              <div>
+                <h3>Menntun</h3>
+                <dl>
+                  <dt>2024</dt><dd>B.Sc. í byggingafræði, Háskólinn í Reykjavík</dd>
+                  <dt>2016</dt><dd>Stúdentspróf af náttúrufræðibraut</dd>
+                </dl>
+              </div>
+              <div>
+                <h3>Endurmenntun</h3>
+                <dl>
+                  <dt>2023–2024</dt><dd>Námskeið hjá Iðunni fræðslusetri: Raki og mygla í húsum 1–3, Gluggar og þéttingar, Stillum hitann, Húsveitugrindur og stjórngrindur</dd>
+                </dl>
+              </div>
+            </div>
           </div>
         </div>
       </section>
