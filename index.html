@@ -3,116 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- EDIT: the title shown in the browser tab and in Google results -->
   <title>Sigurþór Ingi Sigurþórsson — Byggingafræðingur</title>
-  <meta name="description" content="Sigurþór Ingi Sigurþórsson byggingafræðingur, sérfræðingur hjá Isavia. Byggingarhönnun, verkteikningar og BIM-stjórnun.">
+  <meta name="description" content="Sigurþór Ingi Sigurþórsson byggingafræðingur, sérfræðingur á verkfræðideild hjá Isavia. Byggingarhönnun, verkteikningar og BIM-líkön.">
+  <meta name="theme-color" content="#0F1215">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- ===== STYLE: how the page looks (colors, fonts, spacing) ===== -->
   <style>
     :root {
-      --paper: #F6F7F6;
-      --ink: #1C2024;
-      --muted: #687078;
-      --line: #D5D9DC;
-      --placeholder: #E3E6E7;
-      --measure: 1180px;
+      --bg: #0F1215;          /* page background */
+      --panel: #161B20;       /* cards */
+      --panel-hover: #1A2026;
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.16);
+      --ink: #ECEFF2;         /* main text */
+      --body: #C3CAD1;        /* paragraph text */
+      --muted: #8A949E;       /* secondary text */
+      --accent: #B9C0C7;      /* light grey */
+      --accent-bg: rgba(255,255,255,0.07);
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --measure: 1120px;
+      --radius: 16px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
-      background: var(--paper);
+      background: var(--bg);
       color: var(--ink);
-      font-family: "Instrument Sans", system-ui, sans-serif;
+      font-family: "Schibsted Grotesk", system-ui, sans-serif;
       font-size: 17px;
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
+    ::selection { background: var(--accent); color: var(--bg); }
     a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
     img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    ul { list-style: none; }
 
     .wrap { max-width: var(--measure); margin: 0 auto; padding: 0 32px; }
 
-    /* Header */
-    header { border-bottom: 1px solid var(--line); }
-    header .wrap { display: flex; justify-content: space-between; align-items: baseline; padding-top: 22px; padding-bottom: 22px; gap: 24px; }
-    .name { font-weight: 600; text-decoration: none; }
-    nav ul { list-style: none; display: flex; gap: 28px; }
-    nav a { text-decoration: none; color: var(--muted); }
+    /* ---------- Header ---------- */
+    header { position: sticky; top: 0; z-index: 10; background: rgba(15,18,21,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; gap: 24px; }
+    .name { font-weight: 600; text-decoration: none; white-space: nowrap; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 6px 28px; }
+    nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color .15s; }
     nav a:hover { color: var(--ink); }
 
-    /* Intro */
-    .intro { display: grid; grid-template-columns: 7fr 5fr; gap: 56px; padding: 96px 0 112px; align-items: end; }
-    .intro h1 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; font-weight: 500; letter-spacing: -0.02em; max-width: 14ch; }
-    .intro p { margin-top: 28px; color: var(--muted); max-width: 46ch; font-size: 1.1rem; }
-    .portrait { aspect-ratio: 4 / 5; background: var(--placeholder); }
+    /* ---------- Intro ---------- */
+    .intro { display: grid; grid-template-columns: 1fr 360px; gap: 72px; padding: 96px 0 112px; align-items: center; }
+    .status { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+    .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #7FD1A8; box-shadow: 0 0 0 4px rgba(127,209,168,0.15); }
+    .intro h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); line-height: 1.08; font-weight: 600; letter-spacing: -0.025em; max-width: 17ch; }
+    .intro .lead { margin-top: 22px; color: var(--body); font-size: 1.12rem; max-width: 50ch; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .chips span { font-size: 0.9rem; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 14px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--line-strong); text-decoration: none; font-weight: 600; font-size: 0.98rem; transition: background .15s, border-color .15s, color .15s; }
+    .btn:hover { border-color: var(--ink); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .btn.primary:hover { background: #DDE2E6; border-color: #DDE2E6; }
+    .portrait { aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; background: var(--panel); }
 
-    /* Sections */
-    section { border-top: 1px solid var(--line); padding: 72px 0 96px; }
-    .section-head { display: grid; grid-template-columns: 1fr 3fr; gap: 56px; margin-bottom: 48px; }
-    .section-head h2 { font-size: 1rem; font-weight: 600; }
-    .section-head p { color: var(--muted); max-width: 52ch; }
-
-    /* Projects */
-    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 64px 40px; }
-    .project:first-child { grid-column: 1 / -1; }
-    .project .photo { aspect-ratio: 3 / 2; background: var(--placeholder); }
-    .project:first-child .photo { aspect-ratio: 16 / 7; }
-    .project-meta { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; }
-    .project h3 { font-size: 1.15rem; font-weight: 500; }
-    .project .year { color: var(--muted); font-variant-numeric: tabular-nums; }
-    .project p { color: var(--muted); margin-top: 4px; max-width: 60ch; }
-
-    /* Services */
-    .services { list-style: none; }
-    .services li { display: grid; grid-template-columns: 1fr 3fr; gap: 56px; padding: 28px 0; border-top: 1px solid var(--line); }
-    .services li:last-child { border-bottom: 1px solid var(--line); }
-    .services h3 { font-size: 1.15rem; font-weight: 500; }
-    .services p { color: var(--muted); max-width: 60ch; }
+    /* ---------- Sections ---------- */
+    section { border-top: 1px solid var(--line); padding: 80px 0 96px; }
+    .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 40px; }
+    .head .num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
+    .head h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
 
     /* About */
-    .about { display: grid; grid-template-columns: 1fr 3fr; gap: 56px; }
-    .about-text p + p { margin-top: 1em; }
-    .about-text { max-width: 62ch; }
-    .cv-link { display: inline-block; margin-top: 32px; padding: 12px 22px; border: 1px solid var(--ink); text-decoration: none; font-weight: 500; }
-    .cv-link:hover { background: var(--ink); color: var(--paper); }
+    .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
+    .about p { color: var(--body); font-size: 1.1rem; max-width: 58ch; }
+    .about p + p { margin-top: 1em; }
+    .facts { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 24px; }
+    .facts div { padding: 16px 0; border-top: 1px solid var(--line); }
+    .facts div:first-child { border-top: 0; }
+    .facts dt { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+    .facts dd { margin-top: 2px; }
 
-    /* Experience (selected work projects) */
-    .work { list-style: none; }
-    .work li { display: grid; grid-template-columns: 1fr 3fr; gap: 56px; padding: 26px 0; border-top: 1px solid var(--line); }
-    .work li:last-child { border-bottom: 1px solid var(--line); }
-    .work .when { color: var(--muted); font-variant-numeric: tabular-nums; }
-    .work h3 { font-size: 1.15rem; font-weight: 500; }
-    .work .client { color: var(--muted); font-size: 0.95rem; }
-    .work p.desc { margin-top: 8px; max-width: 62ch; }
+    /* Cards (experience + projects) */
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 30px; transition: border-color .15s, background .15s; }
+    .card:hover { border-color: var(--line-strong); background: var(--panel-hover); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+    .card h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+    .org { color: var(--accent); font-weight: 500; margin-top: 2px; }
+    .date { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 10px; white-space: nowrap; padding-top: 4px; }
+    .pill { font-family: var(--mono); font-size: 0.72rem; color: var(--ink); background: rgba(255,255,255,0.08); border-radius: 999px; padding: 2px 10px; }
+    /* Logos: sized so the lettering in every logo is the same height (about 14px), with the lettering aligned along the bottom */
+    .logo-row { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 18px; }
+    .logo { display: block; width: auto; object-fit: contain; }
+    .logo.isavia { height: 70px; }
+    .logo.vr { height: 33px; }
+    .logo.cowi { height: 21px; }
+    .logo.mannvit { height: 64px; }
+    .logo-row .slash { color: var(--muted); font-size: 1rem; line-height: 14px; font-weight: 300; }
+    .points { margin-top: 16px; color: var(--body); }
+    .points li { position: relative; padding-left: 20px; margin-top: 8px; }
+    .points li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: .7; }
+    .card p.desc { margin-top: 14px; color: var(--body); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .tags span { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); background: var(--accent-bg); border-radius: 6px; padding: 3px 9px; }
 
-    /* Facts under About (work history, education) */
-    .facts { margin-top: 48px; display: grid; gap: 32px; }
-    .facts h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-    .facts dl { display: grid; grid-template-columns: 7.5em 1fr; gap: 6px 16px; }
-    .facts dt { color: var(--muted); font-variant-numeric: tabular-nums; }
+    /* Experience timeline */
+    .timeline { position: relative; padding-left: 190px; }
+    .timeline::before { content: ""; position: absolute; left: 166px; top: 12px; bottom: 12px; width: 1px; background: var(--line-strong); }
+    .timeline > li { position: relative; }
+    .timeline > li + li { margin-top: 20px; }
+    .timeline > li::before { content: ""; position: absolute; left: -29px; top: 34px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--muted); }
+    .timeline .when { position: absolute; left: -190px; top: 29px; width: 140px; text-align: right; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .timeline .when .pill { display: inline-block; margin-top: 6px; }
+    .timeline > li.current::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-bg); }
+
+    /* Projects grid */
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .projects .card { display: flex; flex-direction: column; }
+    .projects .card .tags { margin-top: auto; padding-top: 20px; }
+    .kind { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .skill { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+    .skill h3 { font-size: 1rem; font-weight: 600; margin-bottom: 14px; color: var(--accent); }
+    .skill ul { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill li { font-size: 0.9rem; border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 12px; color: var(--ink); }
 
     /* Contact */
-    .contact-email { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -0.015em; }
-    .contact-details { margin-top: 24px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 32px; }
+    .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: end; }
+    .contact h3 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.12; }
+    .contact p { margin-top: 16px; color: var(--body); max-width: 48ch; }
+    .links { display: grid; gap: 12px; }
+    .links a { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; text-decoration: none; font-weight: 500; transition: border-color .15s; }
+    .links a:hover { border-color: var(--accent); }
+    .links .k { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
 
+    footer { border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: 0.9rem; }
     .footer-row { display: flex; justify-content: space-between; gap: 16px; }
-    footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 0.9rem; }
 
-    /* Phones and small screens */
-    @media (max-width: 760px) {
+    /* ---------- Tablets ---------- */
+    @media (max-width: 960px) {
+      .intro { grid-template-columns: 1fr 280px; gap: 48px; }
+      .about, .contact { grid-template-columns: 1fr; gap: 32px; }
+      .skills { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ---------- Phones ---------- */
+    @media (max-width: 680px) {
       .wrap { padding: 0 16px; }
-      header .wrap { flex-direction: column; gap: 10px; }
-      nav ul { gap: 20px; flex-wrap: wrap; }
-      .intro { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 72px; }
-      .section-head, .services li, .work li, .about { grid-template-columns: 1fr; gap: 12px; }
-      .work li { gap: 4px; }
-      .projects { grid-template-columns: 1fr; gap: 48px; }
-      .project:first-child .photo { aspect-ratio: 3 / 2; }
+      header { position: static; }
+      header .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+      nav ul { gap: 6px 18px; }
+      .intro { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 64px; }
+      .portrait { max-width: 340px; }
+      .projects, .skills { grid-template-columns: 1fr; }
+      .card { padding: 22px; }
+      .timeline { padding-left: 26px; }
+      .timeline > li::before { left: -25px; top: 5px; }
+      .timeline::before { left: 5px; }
+      .timeline .when { position: static; width: auto; text-align: left; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .timeline .when .pill { margin-top: 0; }
       section { padding: 56px 0 72px; }
     }
   </style>
@@ -123,14 +175,13 @@
 
   <header>
     <div class="wrap">
-      <!-- EDIT: your name -->
       <a class="name" href="#">Sigurþór Ingi Sigurþórsson</a>
       <nav aria-label="Aðalvalmynd">
         <ul>
-          <li><a href="#services">Þjónusta</a></li>
-          <li><a href="#projects">Verk</a></li>
-          <li><a href="#experience">Reynsla</a></li>
           <li><a href="#about">Um mig</a></li>
+          <li><a href="#experience">Reynsla</a></li>
+          <li><a href="#projects">Verkefni</a></li>
+          <li><a href="#skills">Hæfni</a></li>
           <li><a href="#contact">Hafa samband</a></li>
         </ul>
       </nav>
@@ -143,197 +194,180 @@
       <!-- INTRO -->
       <div class="intro">
         <div>
-          <!-- EDIT: one sentence about who you are -->
-          <h1>Byggingafræðingur.</h1>
-          <p>Ég starfa sem sérfræðingur á verkfræðideild hjá Isavia og tek einnig að mér verkefni fyrir einkaaðila: aðaluppdrætti, verkteikningar og BIM-ráðgjöf.</p>
+          <div class="status"><span class="dot" aria-hidden="true"></span>Byggingafræðingur · Sérfræðingur hjá Isavia</div>
+          <h1>Byggingarhönnun, frá fyrstu teikningu að samræmdu líkani.</h1>
+          <p class="lead">Ég vinn aðaluppdrætti, byggingarlýsingar og verkteikningar, og set upp og samræmi BIM-líkön milli fagsviða.</p>
+          <!-- CHIPS: the small rounded labels. Add or remove a <span> to change them. -->
+          <div class="chips">
+            <span>Aðaluppdrættir</span><span>Byggingarlýsing</span><span>Skráningartöflur</span><span>Verkteikningar</span><span>BIM-líkön</span><span>Samræming</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="#projects">Skoða verkefni</a>
+            <a class="btn" href="#contact">Hafa samband</a>
+          </div>
         </div>
         <!-- PHOTO: your portrait. To change it, replace images/portrait.jpg -->
         <div class="portrait"><img src="images/portrait.jpg" alt="Sigurþór Ingi Sigurþórsson" width="1000" height="1481" style="object-position:50% 30%"></div>
       </div>
 
-      <!-- SERVICES: each <li> block is one service -->
-      <section id="services">
-        <div class="section-head">
-          <h2>Þjónusta</h2>
-          <p>Fyrir einkaaðila, fyrirtæki og hönnunarteymi.</p>
-        </div>
-        <ul class="services">
-          <li>
-            <h3>Byggingarhönnun</h3>
-            <p>Aðaluppdrættir, byggingarlýsingar og skráningartöflur fyrir nýbyggingar, viðbyggingar og breytingar.</p>
-          </li>
-          <li>
-            <h3>Verkteikningar og deili</h3>
-            <p>Verk- og smíðateikningar, deilihönnun, verklýsingar og magnskrár.</p>
-          </li>
-          <li>
-            <h3>BIM-stjórnun og samræming</h3>
-            <p>Uppsetning líkana, samræming milli fagsviða, árekstrargreining og umsjón með ACC-vefjum og BIM-kröfum verkkaupa.</p>
-          </li>
-        </ul>
-      </section>
-
-      <!-- PROJECTS: your own private projects with photos. Each <article> block is one project. Copy a block to add another. -->
-      <section id="projects">
-        <div class="section-head">
-          <h2>Verk</h2>
-          <p>Verkefni sem ég hef unnið fyrir einkaaðila.</p>
-        </div>
-        <div class="projects">
-
-          <article class="project">
-            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
-            <div class="project-meta">
-              <h3>Heiti verkefnis</h3>
-              <span class="year">2025</span>
-            </div>
-            <p>Einbýlishús, 180 m². Frumhönnun, hönnun og aðaluppdrættir. Staðsetning.</p>
-          </article>
-
-          <article class="project">
-            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
-            <div class="project-meta">
-              <h3>Heiti verkefnis</h3>
-              <span class="year">2024</span>
-            </div>
-            <p>Viðbygging við sumarhús. Hönnun og verkteikningar. Staðsetning.</p>
-          </article>
-
-          <article class="project">
-            <div class="photo" role="img" aria-label="Staðgengill fyrir verkefnismynd"></div>
-            <div class="project-meta">
-              <h3>Heiti verkefnis</h3>
-              <span class="year">2023</span>
-            </div>
-            <p>Endurnýjun íbúðar. Skipulag, innanhússhönnun og BIM-líkan. Staðsetning.</p>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- EXPERIENCE: selected projects from work (from the CV). Each <li> is one project. -->
-      <section id="experience">
-        <div class="section-head">
-          <h2>Reynsla</h2>
-          <p>Valin verkefni sem ég hef unnið hjá COWI og Mannviti.</p>
-        </div>
-        <ul class="work">
-          <li>
-            <span class="when">2024–2026</span>
-            <div>
-              <h3>First Water, landeldi</h3>
-              <span class="client">First Water ehf.</span>
-              <p class="desc">Eitt stærsta framkvæmdaverkefni á Íslandi síðustu ár, um 45.000 m² í fyrsta áfanga. Ég stýrði teymi í byggingarhönnun, aðaluppdráttum, útboðs- og verkteikningum, og sá ásamt öðrum um BIM og samræmingu yfir 150 líkana í ACC.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2024–2025</span>
-            <div>
-              <h3>Reykjahlíð, djúpdælur</h3>
-              <span class="client">Veitur</span>
-              <p class="desc">Umsjón með byggingarhönnun, aðaluppdráttum, verkteikningum og útboðsgögnum fyrir sex rafbúnaðarhús í tveimur áföngum. BIM-fulltrúi verkefnisins: samræming líkana, árekstrargreining og umsjón með ACC.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2025</span>
-            <div>
-              <h3>Seleyri, rafbúnaðar- og dæluhús</h3>
-              <span class="client">Veitur</span>
-              <p class="desc">Umsjón með byggingarhönnun, aðaluppdráttum, verkteikningum, verklýsingum og magnskrám fyrir tvö hús. BIM-fulltrúi sem sá um uppsetningu líkana allra fagsviða og BIM-kröfur verkkaupa.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2024</span>
-            <div>
-              <h3>Sóltún 2, viðbygging</h3>
-              <span class="client">Sóltún fasteign ehf.</span>
-              <p class="desc">Hönnun og teikningar fyrir um 3.500 m² stækkun hjúkrunarheimilis, ásamt breytingum á núverandi húsnæði.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2023</span>
-            <div>
-              <h3>Tengivirki</h3>
-              <span class="client">Landsnet</span>
-              <p class="desc">Hönnun frágangsdeila fyrir utan- og innanhússfrágang fimm tengivirkja, meðal annars í Rimakoti, Þorlákshöfn, á Hellu, Klafastöðum og í Sigöldu.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2023</span>
-            <div>
-              <h3>Sumarhús í Kiðjabergi</h3>
-              <span class="client">Einkaaðili</span>
-              <p class="desc">Deilihönnun á byggingarfrágangi rúmlega 413 m² sumarhúss og líkanagerð fyrir myndvinnslu verkkaupa.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2022–2024</span>
-            <div>
-              <h3>Colas, þjónustu- og starfsmannahús</h3>
-              <span class="client">Colas Ísland ehf.</span>
-              <p class="desc">Hönnun og teikningar lagna og loftræstingar fyrir 1.229 m² hús, auk frágangsdeila. Einnig verkteikningar, deili og verklýsingar fyrir nýtt áfyllingarhús við Óseyrarbraut.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2023–2024</span>
-            <div>
-              <h3>Sky Lagoon, stækkun</h3>
-              <span class="client">Nature Resort ehf.</span>
-              <p class="desc">Lagnahönnun í rúmlega 960 m² viðbyggingu.</p>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- ABOUT -->
+      <!-- 01 ABOUT -->
       <section id="about">
+        <div class="head"><span class="num">01</span><h2>Um mig</h2></div>
         <div class="about">
-          <div class="section-head" style="margin:0;display:block"><h2>Um mig</h2></div>
-          <div class="about-text">
-            <p>Ég lauk B.Sc. í byggingafræði frá Háskólanum í Reykjavík og útskrifaðist í febrúar 2024. Við útskrift hlaut ég viðurkenningu frá HR og Byggingafræðingafélagi Íslands fyrir hæstu meðaleinkunn útskriftarnema í byggingafræði.</p>
-            <p>Ég hef starfað við hönnun og eftirlit frá árinu 2021, fyrst hjá Verkfræðistofu Reykjavíkur og síðan hjá Mannviti, sem nú er hluti af COWI. Þar vann ég fyrst við lagna- og loftræstihönnun og síðan á sviði arkitektúrs og byggingareðlisfræði við byggingarhönnun og BIM. Í janúar 2026 hóf ég störf sem sérfræðingur á verkfræðideild hjá Isavia.</p>
-            <p>Hjá COWI innleiddi ég einnig BIM7AA-kóðunarkerfi fyrir byggingarhluta í arkitektalíkönum og vann að þróun verklags í Revit og BIM.</p>
-            <!-- CV: when you have a web version of your CV, save it as cv.pdf in this folder and remove the two comment markers around the link below -->
-            <!-- <a class="cv-link" href="cv.pdf" download>Sækja ferilskrá (PDF)</a> -->
-            <div class="facts">
-              <div>
-                <h3>Starfsferill</h3>
-                <dl>
-                  <dt>2026–</dt><dd>Isavia, sérfræðingur á verkfræðideild</dd>
-                  <dt>2024–2026</dt><dd>COWI</dd>
-                  <dt>2022–2024</dt><dd>Mannvit hf.</dd>
-                  <dt>2021–2022</dt><dd>Verkfræðistofa Reykjavíkur</dd>
-                </dl>
-              </div>
-              <div>
-                <h3>Menntun</h3>
-                <dl>
-                  <dt>2024</dt><dd>B.Sc. í byggingafræði, Háskólinn í Reykjavík</dd>
-                  <dt>2016</dt><dd>Stúdentspróf af náttúrufræðibraut</dd>
-                </dl>
-              </div>
-              <div>
-                <h3>Endurmenntun</h3>
-                <dl>
-                  <dt>2023–2024</dt><dd>Námskeið hjá Iðunni fræðslusetri: Raki og mygla í húsum 1–3, Gluggar og þéttingar, Stillum hitann, Húsveitugrindur og stjórngrindur</dd>
-                </dl>
-              </div>
-            </div>
+          <div>
+            <p>Ég er byggingafræðingur og hef starfað við hönnun síðan 2022. Lengst af hef ég unnið við byggingarhönnun, en einnig við lagna- og loftræstihönnun hjá COWI / Mannviti.</p>
+            <p>Í dag starfa ég sem sérfræðingur á verkfræðideild Isavia á Keflavíkurflugvelli, þar sem ég sé meðal annars um BIM hjá Isavia ásamt öðrum verkefnum sem tengjast BIM og rekstri innviða flugvallarins.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Starf</dt><dd>Sérfræðingur á verkfræðideild Isavia</dd></div>
+            <div><dt>Menntun</dt><dd>Byggingafræðingur frá Háskólanum í Reykjavík</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 02 EXPERIENCE: each <li> is one job. class="current" marks the job you have now. Logos live in images/logos/ -->
+      <section id="experience">
+        <div class="head"><span class="num">02</span><h2>Reynsla</h2></div>
+        <ul class="timeline">
+          <li class="current">
+            <div class="when">jan 2026 –<br><span class="pill">Núverandi starf</span></div>
+            <article class="card">
+              <div class="logo-row"><img class="logo isavia" src="images/logos/isavia.png" alt="Isavia" width="152" height="160"></div>
+              <h3>Sérfræðingur</h3>
+              <div class="org">Isavia · Verkfræðideild</div>
+              <ul class="points">
+                <li>Umsjón með BIM hjá Isavia.</li>
+                <li>Verkefni tengd BIM og rekstri innviða Keflavíkurflugvallar.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <div class="when">ág 2022 – jan 2026</div>
+            <article class="card">
+              <div class="logo-row"><img class="logo cowi" src="images/logos/cowi.png" alt="COWI" width="285" height="85"><span class="slash" aria-hidden="true">/</span><img class="logo mannvit" src="images/logos/mannvit.png" alt="Mannvit" width="297" height="160"></div>
+              <h3>Byggingafræðingur</h3>
+              <div class="org">COWI · Architecture &amp; Building Physics</div>
+              <div class="org">Mannvit · Lagna- og loftræstisvið</div>
+              <ul class="points">
+                <li>Byggingarhönnun.</li>
+                <li>Aðaluppdrættir, byggingarlýsingar, skráningartöflur, útboðs- og verkteikningar og deilihönnun.</li>
+                <li>Verklýsingar og magnskrár.</li>
+                <li>BIM-umsjón: uppsetning líkana, samræming milli fagsviða, árekstrargreining, innleiðing kóðunarkerfis og þróunarvinna tengd BIM.</li>
+                <li>Lagna- og loftræstihönnun og teiknivinna.</li>
+              </ul>
+            </article>
+          </li>
+          <li>
+            <div class="when">apr 2021 – ág 2022</div>
+            <article class="card">
+              <div class="logo-row"><img class="logo vr" src="images/logos/vr.png" alt="Verkfræðistofa Reykjavíkur" width="571" height="160"></div>
+              <h3>Eftirlit</h3>
+              <div class="org">Verkfræðistofa Reykjavíkur · Sumarstarf</div>
+              <ul class="points">
+                <li>Daglegt framkvæmdareftirlit.</li>
+              </ul>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 03 PROJECTS: described by building type and role, without project or client names. Each <article> is one card. -->
+      <section id="projects">
+        <div class="head"><span class="num">03</span><h2>Verkefni</h2></div>
+        <div class="projects">
+          <article class="card">
+            <div class="card-top"><span class="kind">Iðnaðarhúsnæði</span><span class="date">2024–2026</span></div>
+            <h3 style="margin-top:12px">Landeldisstöð</h3>
+            <p class="desc">Fjöldi bygginga í einu stærsta framkvæmdaverkefni landsins síðustu ár.</p>
+            <ul class="points">
+              <li>Stýrði teymi í byggingarhönnun og teiknivinnu.</li>
+              <li>Aðaluppdrættir, útboðs- og verkteikningar og frágangsdeili.</li>
+              <li>Samræming yfir 150 líkana allra fagsviða.</li>
+            </ul>
+            <div class="tags"><span>Teymisstjórn</span><span>Aðaluppdrættir</span><span>Samræming</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="kind">Veitumannvirki</span><span class="date">2023–2025</span></div>
+            <h3 style="margin-top:12px">Rafbúnaðar- og dæluhús</h3>
+            <p class="desc">Hús fyrir rafbúnað, dælur og lagnir á nokkrum stöðum.</p>
+            <ul class="points">
+              <li>Umsjón með byggingarhönnun, aðaluppdráttum og verkteikningum.</li>
+              <li>Verklýsingar og magnskrár.</li>
+              <li>BIM-fulltrúi: líkön allra fagsviða og árekstrargreining.</li>
+            </ul>
+            <div class="tags"><span>Byggingarhönnun</span><span>BIM-fulltrúi</span><span>Magnskrár</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="kind">Heilbrigðisbygging</span><span class="date">2024</span></div>
+            <h3 style="margin-top:12px">Viðbygging við hjúkrunarheimili</h3>
+            <p class="desc">Hönnun og teikningar fyrir stækkun um tvær hæðir, ásamt breytingum á núverandi húsnæði.</p>
+            <div class="tags"><span>Byggingarhönnun</span><span>Breytingar</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="kind">Orkumannvirki</span><span class="date">2023</span></div>
+            <h3 style="margin-top:12px">Tengivirki</h3>
+            <p class="desc">Frágangsdeili fyrir utan- og innanhússfrágang nokkurra tengivirkja.</p>
+            <div class="tags"><span>Deilihönnun</span><span>Frágangur</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="kind">Íbúðarhúsnæði</span><span class="date">2023</span></div>
+            <h3 style="margin-top:12px">Sumarhús</h3>
+            <p class="desc">Deilihönnun á byggingarfrágangi og líkanagerð fyrir myndvinnslu verkkaupa.</p>
+            <div class="tags"><span>Deilihönnun</span><span>Líkanagerð</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="kind">Atvinnuhúsnæði</span><span class="date">2022–2024</span></div>
+            <h3 style="margin-top:12px">Þjónustu- og starfsmannahús</h3>
+            <p class="desc">Lagna- og loftræstihönnun fyrir allt húsið, ásamt frágangsdeilum.</p>
+            <div class="tags"><span>Lagnahönnun</span><span>Loftræsting</span><span>Deilihönnun</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 04 SKILLS: each "skill" box is one group; each <li> is one rounded label -->
+      <section id="skills">
+        <div class="head"><span class="num">04</span><h2>Hæfni</h2></div>
+        <div class="skills">
+          <div class="skill">
+            <h3>Byggingarhönnun</h3>
+            <ul><li>Aðaluppdrættir</li><li>Byggingarlýsingar</li><li>Skráningartöflur</li><li>Verk- og smíðateikningar</li><li>Deilihönnun</li></ul>
+          </div>
+          <div class="skill">
+            <h3>BIM</h3>
+            <ul><li>Uppsetning líkana</li><li>Samræming milli fagsviða</li><li>Árekstrargreining</li><li>BIM7AA-kóðun</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Hugbúnaður</h3>
+            <ul><li>Revit</li><li>Autodesk Construction Cloud</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Útboðsgögn</h3>
+            <ul><li>Verklýsingar</li><li>Magnskrár</li><li>Útboðsteikningar</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Lagnir og loftræsting</h3>
+            <ul><li>Lagnahönnun</li><li>Loftræstihönnun</li><li>Magntaka</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Framkvæmdir</h3>
+            <ul><li>Eftirlit</li><li>Verkefnastjórnun</li><li>Samskipti við verktaka</li><li>Teymisstjórn</li></ul>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT -->
+      <!-- 05 CONTACT -->
       <section id="contact">
-        <div class="section-head">
-          <h2>Hafa samband</h2>
-          <p>Sendu mér tölvupóst vegna nýrra verkefna eða BIM-vinnu.</p>
-        </div>
-        <!-- EDIT: your email in both places -->
-        <a class="contact-email" href="mailto:you@example.com">you@example.com</a>
-        <div class="contact-details">
-          <span>Símanúmer</span>
-          <a href="https://www.linkedin.com/in/sigur%C3%BE%C3%B3r-ingi-sigur%C3%BE%C3%B3rsson-73328a192/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="head"><span class="num">05</span><h2>Hafa samband</h2></div>
+        <div class="contact">
+          <div>
+            <h3>Ertu að fara að byggja eða breyta?</h3>
+            <p>Ég tek að mér byggingarhönnun fyrir einkaaðila: aðaluppdrætti, byggingarlýsingar, skráningartöflur og verkteikningar.</p>
+          </div>
+          <div class="links">
+            <!-- EDIT: to show your email, remove the comment markers around the next line and put in your address in both places -->
+            <!-- <a href="mailto:you@example.com"><span>you@example.com</span><span class="k">Netfang</span></a> -->
+            <a href="https://www.linkedin.com/in/sigur%C3%BE%C3%B3r-ingi-sigur%C3%BE%C3%B3rsson-73328a192/" target="_blank" rel="noopener"><span>LinkedIn</span><span class="k">Opnast í nýjum flipa ↗</span></a>
+          </div>
         </div>
       </section>
 
