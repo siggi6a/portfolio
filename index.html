@@ -48,23 +48,28 @@
 
     /* ---------- Header ---------- */
     header { position: sticky; top: 0; z-index: 10; background: rgba(15,18,21,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-    header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; gap: 24px; }
+    header .wrap { display: flex; justify-content: center; align-items: center; padding-top: 16px; padding-bottom: 16px; }
     .name { font-family: var(--mono); font-size: 0.95rem; font-weight: 500; text-decoration: none; white-space: nowrap; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 6px 28px; }
-    nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color .15s; }
-    nav a:hover { color: var(--ink); }
+    /* Section index under the name: numbered rows that slide and brighten on hover */
+    .index { margin-top: 44px; max-width: 440px; border-top: 1px solid var(--line-strong); }
+    .index a { position: relative; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; padding: 15px 4px; border-bottom: 1px solid var(--line-strong); text-decoration: none; color: var(--body); transition: color .2s, padding .2s, background .2s; }
+    .index a::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0; background: var(--ink); transition: width .35s ease; }
+    .index .n { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); transition: color .2s; }
+    .index .t { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .index .arrow { font-size: 1.05rem; color: var(--muted); transform: translateX(-6px); opacity: 0; transition: transform .2s, opacity .2s; }
+    .index a:hover, .index a:focus-visible { color: var(--ink); padding-left: 14px; background: rgba(255,255,255,0.025); }
+    .index a:hover::before, .index a:focus-visible::before { width: 100%; }
+    .index a:hover .n, .index a:focus-visible .n { color: var(--ink); }
+    .index a:hover .arrow, .index a:focus-visible .arrow { transform: none; opacity: 1; color: var(--ink); }
+    @media (prefers-reduced-motion: reduce) { .index a, .index a::before, .index .arrow { transition: none; } }
 
     /* ---------- Intro ---------- */
     .intro { display: grid; grid-template-columns: 1fr 360px; gap: 72px; padding: 96px 0 112px; align-items: center; }
     .status-unused { display: none; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
     .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #7FD1A8; box-shadow: 0 0 0 4px rgba(127,209,168,0.15); }
-    .intro h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); line-height: 1.08; font-weight: 600; letter-spacing: -0.025em; max-width: 14ch; }
+    .intro h1 { font-size: clamp(1.35rem, 4vw, 2.75rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.025em; white-space: nowrap; }
     .intro .role { margin-top: 18px; font-size: 1.35rem; font-weight: 500; color: var(--ink); }
     .intro .role.sub { margin-top: 2px; font-size: 1.1rem; font-weight: 400; color: var(--muted); }
-    .intro .lead { margin-top: 22px; color: var(--body); font-size: 1.12rem; max-width: 50ch; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-    .chips span { font-size: 0.9rem; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 14px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; border: 1px solid var(--line-strong); text-decoration: none; font-weight: 600; font-size: 0.98rem; transition: background .15s, border-color .15s, color .15s; }
     .btn:hover { border-color: var(--ink); }
     .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
@@ -157,8 +162,7 @@
     @media (max-width: 680px) {
       .wrap { padding: 0 16px; }
       header { position: static; }
-      header .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
-      nav ul { gap: 6px 18px; }
+      .intro h1 { font-size: 6.2vw; }
       .intro { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 64px; }
       .portrait { max-width: 340px; }
       .projects, .skills { grid-template-columns: 1fr; }
@@ -181,15 +185,6 @@
   <header>
     <div class="wrap">
       <a class="name" href="#">sigurthoringi.is</a>
-      <nav aria-label="Aðalvalmynd">
-        <ul>
-          <li><a href="#about">Um mig</a></li>
-          <li><a href="#experience">Reynsla</a></li>
-          <li><a href="#projects">Verkefni</a></li>
-          <li><a href="#skills">Hæfni</a></li>
-          <li><a href="#contact">Hafa samband</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
@@ -202,15 +197,14 @@
           <h1>Sigurþór Ingi Sigurþórsson</h1>
           <p class="role">Byggingafræðingur</p>
           <p class="role sub">Sérfræðingur á verkfræðideild Isavia</p>
-          <p class="lead">Ég vinn aðaluppdrætti, byggingarlýsingar og verkteikningar, og set upp og samræmi BIM-líkön milli fagsviða.</p>
-          <!-- CHIPS: the small rounded labels. Add or remove a <span> to change them. -->
-          <div class="chips">
-            <span>Aðaluppdrættir</span><span>Byggingarlýsing</span><span>Skráningartöflur</span><span>Verkteikningar</span><span>BIM-líkön</span><span>Samræming</span>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="#projects">Skoða verkefni</a>
-            <a class="btn" href="#contact">Hafa samband</a>
-          </div>
+          <!-- MENU: links to each section. The number matches the section number further down. -->
+          <nav class="index" aria-label="Efnisyfirlit">
+            <a href="#about"><span class="n">01</span><span class="t">Um mig</span><span class="arrow" aria-hidden="true">↓</span></a>
+            <a href="#experience"><span class="n">02</span><span class="t">Reynsla</span><span class="arrow" aria-hidden="true">↓</span></a>
+            <a href="#projects"><span class="n">03</span><span class="t">Verkefni</span><span class="arrow" aria-hidden="true">↓</span></a>
+            <a href="#skills"><span class="n">04</span><span class="t">Hæfni</span><span class="arrow" aria-hidden="true">↓</span></a>
+            <a href="#contact"><span class="n">05</span><span class="t">Hafa samband</span><span class="arrow" aria-hidden="true">↓</span></a>
+          </nav>
         </div>
         <!-- PHOTO: your portrait. To change it, replace images/portrait.jpg -->
         <div class="portrait"><img src="images/portrait.jpg" alt="Sigurþór Ingi Sigurþórsson" width="1000" height="1481" style="object-position:50% 30%"></div>
