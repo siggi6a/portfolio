@@ -49,16 +49,18 @@
     /* ---------- Header ---------- */
     header { position: sticky; top: 0; z-index: 10; background: rgba(15,18,21,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
     header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; gap: 24px; }
-    .name { font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .name { font-family: var(--mono); font-size: 0.95rem; font-weight: 500; text-decoration: none; white-space: nowrap; }
     nav ul { display: flex; flex-wrap: wrap; gap: 6px 28px; }
     nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color .15s; }
     nav a:hover { color: var(--ink); }
 
     /* ---------- Intro ---------- */
     .intro { display: grid; grid-template-columns: 1fr 360px; gap: 72px; padding: 96px 0 112px; align-items: center; }
-    .status { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+    .status-unused { display: none; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
     .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #7FD1A8; box-shadow: 0 0 0 4px rgba(127,209,168,0.15); }
-    .intro h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); line-height: 1.08; font-weight: 600; letter-spacing: -0.025em; max-width: 17ch; }
+    .intro h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); line-height: 1.08; font-weight: 600; letter-spacing: -0.025em; max-width: 14ch; }
+    .intro .role { margin-top: 18px; font-size: 1.35rem; font-weight: 500; color: var(--ink); }
+    .intro .role.sub { margin-top: 2px; font-size: 1.1rem; font-weight: 400; color: var(--muted); }
     .intro .lead { margin-top: 22px; color: var(--body); font-size: 1.12rem; max-width: 50ch; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
     .chips span { font-size: 0.9rem; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 14px; }
@@ -72,8 +74,8 @@
     /* ---------- Sections ---------- */
     section { border-top: 1px solid var(--line); padding: 80px 0 96px; }
     .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 40px; }
-    .head .num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
-    .head h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+    .head .num { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+    .head h2 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2; }
 
     /* About */
     .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; }
@@ -125,7 +127,8 @@
     .kind { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 
     /* Skills */
-    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; grid-template-areas: "design draw bim" "soft soft bim"; }
+    .s-design { grid-area: design; } .s-draw { grid-area: draw; } .s-bim { grid-area: bim; } .s-soft { grid-area: soft; }
     .skill { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
     .skill h3 { font-size: 1rem; font-weight: 600; margin-bottom: 14px; color: var(--accent); }
     .skill ul { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -147,7 +150,7 @@
     @media (max-width: 960px) {
       .intro { grid-template-columns: 1fr 280px; gap: 48px; }
       .about, .contact { grid-template-columns: 1fr; gap: 32px; }
-      .skills { grid-template-columns: 1fr 1fr; }
+      .skills { grid-template-columns: 1fr 1fr; grid-template-areas: "design draw" "bim soft"; }
     }
 
     /* ---------- Phones ---------- */
@@ -159,6 +162,8 @@
       .intro { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 64px; }
       .portrait { max-width: 340px; }
       .projects, .skills { grid-template-columns: 1fr; }
+      .skills { grid-template-areas: none; }
+      .s-design, .s-draw, .s-bim, .s-soft { grid-area: auto; }
       .card { padding: 22px; }
       .timeline { padding-left: 26px; }
       .timeline > li::before { left: -25px; top: 5px; }
@@ -175,7 +180,7 @@
 
   <header>
     <div class="wrap">
-      <a class="name" href="#">Sigurþór Ingi Sigurþórsson</a>
+      <a class="name" href="#">sigurthoringi.is</a>
       <nav aria-label="Aðalvalmynd">
         <ul>
           <li><a href="#about">Um mig</a></li>
@@ -194,8 +199,9 @@
       <!-- INTRO -->
       <div class="intro">
         <div>
-          <div class="status"><span class="dot" aria-hidden="true"></span>Byggingafræðingur · Sérfræðingur hjá Isavia</div>
-          <h1>Byggingarhönnun, frá fyrstu teikningu að samræmdu líkani.</h1>
+          <h1>Sigurþór Ingi Sigurþórsson</h1>
+          <p class="role">Byggingafræðingur</p>
+          <p class="role sub">Sérfræðingur á verkfræðideild Isavia</p>
           <p class="lead">Ég vinn aðaluppdrætti, byggingarlýsingar og verkteikningar, og set upp og samræmi BIM-líkön milli fagsviða.</p>
           <!-- CHIPS: the small rounded labels. Add or remove a <span> to change them. -->
           <div class="chips">
@@ -328,29 +334,33 @@
       <section id="skills">
         <div class="head"><span class="num">04</span><h2>Hæfni</h2></div>
         <div class="skills">
-          <div class="skill">
+          <div class="skill s-design">
             <h3>Byggingarhönnun</h3>
-            <ul><li>Aðaluppdrættir</li><li>Byggingarlýsingar</li><li>Skráningartöflur</li><li>Verk- og smíðateikningar</li><li>Deilihönnun</li></ul>
+            <ul><li>Iðnaðarmannvirki</li><li>Atvinnuhúsnæði</li><li>Einbýlishús</li><li>Sumarhús</li><li>Stækkanir og viðbyggingar</li><li>Smáhýsi</li></ul>
           </div>
-          <div class="skill">
+          <div class="skill s-draw">
+            <h3>Teiknivinna</h3>
+            <ul><li>Aðaluppdrættir</li><li>Byggingarlýsingar</li><li>Skráningartöflur</li><li>Útboðs- og verkteikningar</li><li>Deilihönnun</li></ul>
+          </div>
+          <div class="skill s-bim">
             <h3>BIM</h3>
-            <ul><li>Uppsetning líkana</li><li>Samræming milli fagsviða</li><li>Árekstrargreining</li><li>BIM7AA-kóðun</li></ul>
+            <ul><li>BIM Management</li><li>Information Management</li><li>ISO 19650</li><li>Gögn og gagnagrunnar</li><li>Samræming og árekstrargreiningar</li><li>Stafrænir tvíburar</li><li>CDE</li><li>Automation</li></ul>
           </div>
-          <div class="skill">
+          <div class="skill s-soft">
             <h3>Hugbúnaður</h3>
-            <ul><li>Revit</li><li>Autodesk Construction Cloud</li></ul>
+            <ul><li>Revit</li><li>Forma</li><li>AutoCAD</li><li>Navisworks</li><li>Solibri</li><li>Power BI</li><li>Power Automate</li><li>CoManage</li><li>Dynamo</li></ul>
           </div>
           <div class="skill">
             <h3>Útboðsgögn</h3>
-            <ul><li>Verklýsingar</li><li>Magnskrár</li><li>Útboðsteikningar</li></ul>
+            <ul><li>Verklýsingar</li><li>Magnskrár</li></ul>
           </div>
           <div class="skill">
             <h3>Lagnir og loftræsting</h3>
-            <ul><li>Lagnahönnun</li><li>Loftræstihönnun</li><li>Magntaka</li></ul>
+            <ul><li>Lagnahönnun</li><li>Loftræstihönnun</li><li>Teiknivinna</li></ul>
           </div>
           <div class="skill">
             <h3>Framkvæmdir</h3>
-            <ul><li>Eftirlit</li><li>Verkefnastjórnun</li><li>Samskipti við verktaka</li><li>Teymisstjórn</li></ul>
+            <ul><li>Eftirlit</li><li>Ástandsskoðun</li><li>Rakamælingar</li></ul>
           </div>
         </div>
       </section>
